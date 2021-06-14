@@ -1,0 +1,11 @@
+print('\nTuple Functions\n')
+tuple1 = (1,2,3,'k',6,7,8,4,5,'g')
+a = tuple1.count(5)
+print(a)
+b = tuple1.index(7)
+print(b)
+print(tuple1[3])
+print(tuple1[:-1])
+print(tuple1[:10])
+print(tuple1[:9])
+''''Which of the following two Python codes will give same output?(i) print(tupl[:-1])(ii) print(tupl[0:5])(iii) print(tupl[0:4])(iv) print(tupl[-4:])If tupl=(5,3,1,9,0) '''
