@@ -174,5 +174,14 @@ print("languages known are"+str(obj["languages"]))
 print("married or not"+str(obj["married"]))
 print("age is"+str(obj["age"]))
 
-
+import pandas as pd 
+  
+# making data frame from csv file 
+df = pd.read_csv("nba.csv") 
+  
+# We are going to find aggregation for these columns 
+df.aggregate({"Number":['sum', 'min'], 
+              "Age":['max', 'min'], 
+              "Weight":['min', 'sum'],  
+              "Salary":['sum']})
 
