@@ -1,0 +1,178 @@
+import pandas as pd
+import numpy as np
+
+#creating an empty series
+s=pd.Series()
+print(s)
+
+#create a series from nparray
+data=np.array(['a','b','c','d'])
+s=pd.Series(data)
+print(s)
+s=pd.Series(data,index=[100,101,102,103])
+print(s)
+
+#Create a series from dictionary
+data={'a':0,'b':1,'c':2,'d':3}
+s=pd.Series(data)
+print(s)
+s=pd.Series(data,index=['b','c','d','a'])
+print(s)
+s=pd.Series(data,index=['b','c','e','a'])
+print(s)
+s=pd.Series(5,index=[0,1,2,3])
+print(s)
+
+''''#Accessing Data from Series with position and slicing
+s1=pd.Series([1,2,3,4,5],index=['a','b','c','d','e'])
+print(s1[0],s1[:3],s1[-3:])
+#gives a traceback exception and error
+#Retrieve data using index label
+print(s1['a'])
+print(s1[['a','b','d']])
+print(s1['f'])'''
+
+#creating empty dataframe
+df=pd.DataFrame()
+print(df)
+
+#creating data frame from list
+data=[1,2,3,4,5]
+df=pd.DataFrame(data)
+print(df)
+df=pd.DataFrame(data,columns=['num'])
+print(df)
+data=[['Alex',10],['Joe',20],['jack',21],['Bob',22]]
+df=pd.DataFrame(data,columns=['Name','Age'])
+print(df)
+df=pd.DataFrame(data,columns=['Name','Age'],dtype=float)
+print(df)
+
+#Create a Data frame from dictionary of array/list
+data={'Name':['Alex','Joe','Jack','Bob'],'Age':[28,12,32,24]}
+df=pd.DataFrame(data)
+print(df)
+df=pd.DataFrame(data,index=['rank1','rank2','rank3','rank4'])
+print(df)
+
+#create a Data Frame from list of dict
+data=[{'a':1,'b':2},{'a':5,'b':6,'c':7}]
+df=pd.DataFrame(data)
+print(df)
+df=pd.DataFrame(data,index=['first','second'])
+print(df)
+df=pd.DataFrame(data,index=['first','second'],columns=['a','b'])
+print(df)
+df=pd.DataFrame(data,index=['first','second'],columns=['a','c1'])
+print(df)
+
+data={'one':pd.Series([1,2,3,4,5]),'two':pd.Series(['a','b','c'])}
+df=pd.DataFrame(data)
+print(df)
+
+''''type(AAPL) # pandas.core.frame.DataFrame
+AAPL.shape # (8514, 6) == (rows, cols)
+AAPL.columns
+#Index(['Open','High','Low','Close','Volume','Adj Close'],dtype='object')
+type(AAPL.columns)
+#pandas.Indexes.base.Index
+#AAPL.index is a special index called DatetimeIndex 
+type(AAPL.index)#pandas.tseries.index.DatetimeIndex
+AAPL.iloc[:5,:1]
+we can specify labels with .loc attribute
+head()
+'''
+
+#Writing Excel Files Using Pandas
+
+
+df = pd.DataFrame({'States':['California', 'Florida', 'Montana', 'Colorodo', 'Washington', 'Virginia'],
+    'Capitals':['Sacramento', 'Tallahassee', 'Helena', 'Denver', 'Olympia', 'Richmond'],
+    'Population':['508529', '193551', '32315', '619968', '52555', '227032']})
+
+df.to_excel('./states.xlsx')
+
+#We can change the name of our sheet by adding the sheet_name parameter to our to_excel() call:
+
+df.to_excel('./states.xlsx', sheet_name='States')
+
+#adding the index parameter and setting it to False will remove the index column from the
+
+df.to_excel('./states.xlsx', sheet_name='States',index=False)
+
+#Reading Excel files with pandas
+state_population = pd.read_excel('./states.xlsx')
+print(state_population.head())
+
+#We can override the default index by passing one of the columns in the Excel file as the index_col parameter:
+
+state_population = pd.read_excel('./states.xlsx', sheet_name='States', index_col='Population')
+state_population.head()
+
+#Reading specific columns
+cols = [1, 3]
+
+students_grades = pd.read_excel('./states.xlsx', usecols=cols)
+students_grades.head()
+
+#Writing CSV Files with to_csv()
+import pandas as pd
+cities = pd.DataFrame([['Sacramento', 'California'], ['Miami', 'Florida']], columns=['City', 'State'])
+cities.to_csv('cities.csv')
+
+#with no index
+
+import pandas as pd
+cities = pd.DataFrame([['Sacramento', 'California'], ['Miami', 'Florida']], columns=['City', 'State'])
+cities.to_csv('cities.csv', index=False)
+
+#customized headers
+import pandas as pd
+cities = pd.DataFrame([['Sacramento', 'California'], ['Miami', 'Florida']], columns=['City', 'State'])
+new_column_names = ['City_Name', 'State_Name']
+cities.to_csv('cities.csv', index=False, header=new_column_names)
+
+#customized delimiter
+
+import pandas as pd
+cities = pd.DataFrame([['Sacramento', 'California'], ['Miami', 'Florida']], columns=['City', 'State'])
+cities.to_csv('cities.csv', index=False, sep=';')
+
+#Handling missing values
+import pandas as pd
+cities = pd.DataFrame([['Sacramento', 'California'], ['Miami', 'Florida'], ['Washington DC', pd.NA]], columns=['City', 'State'])
+cities.to_csv('cities.csv', index=False, na_rep='Unknown')
+
+
+#Reading and writing CSV Files using Pandas
+
+import pandas as pd
+titanic_data = pd.read_csv('titanic.csv')
+print(titanic_data.head())
+
+
+df = pd.read_csv('cities.csv')
+print(df)
+
+#writing data to the json file
+import json
+
+person_dict={"name":"Bob","languages":["English","French"],"married":True,"age":32}
+
+with open("person1.json","w") as json_file:
+    json.dump(person_dict,json_file)
+
+
+#Reading data from the json file
+import json
+with open("person1.json","r") as json_file:
+    data=json_file.read()
+obj=json.loads(data)
+print(obj)
+print("name is"+str(obj["name"]))
+print("languages known are"+str(obj["languages"]))
+print("married or not"+str(obj["married"]))
+print("age is"+str(obj["age"]))
+
+
+
