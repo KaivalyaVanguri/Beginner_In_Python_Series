@@ -1,0 +1,33 @@
+dic = {}
+dic1 = {'fruit':'orange','Fruit':'banana','health':'banana','FRUIT':'carrot','vegetable':'kiwi'}
+print('Dictionary Functions\n')
+k = int(input('enter size of dictionary '))
+for i in range(k):
+  t = input('please enter a key ')
+  s = input('please enter a value ')
+  dic.update({t:s})
+print(dic)
+a = dic.copy()
+print(a)
+a.clear()
+print(a)
+b = dic1.fromkeys(dic,a)
+print(b)
+print(dic1)
+c = dic1.get('FRUIT',1)    
+print(c)      
+d = dic1.keys()
+print(d)
+i = dic.items()
+print(i)
+p = dic1.pop('Fruit')
+print(p,dic1)
+j = dic1.popitem()#will remove last item will not take any arguments
+print(j,dic1)
+l = dic1.setdefault('FRUIT','kiwi')
+print(l,dic1)
+m = dic.values()
+print(min(m))
+for i in dic:
+  print(i,end=' ')
+  print(dic[i])
